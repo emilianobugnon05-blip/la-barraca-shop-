@@ -61,7 +61,6 @@ function convertirProductosShop() {
 }
 
 
-
 // Productos de ejemplo: no representan precios ni existencias reales de La Barraca.
 let demo=[{id:'demo1',name:'Globos surtidos x10',price:1800,icon:'🎈',category:'Cotillón'},{id:'demo2',name:'Pirotín N°10 x100',price:2500,icon:'🧁',category:'Repostería'},{id:'demo3',name:'Granas de colores 100 g',price:1200,icon:'🍬',category:'Repostería'},{id:'demo4',name:'Papel picado x20',price:950,icon:'🎊',category:'Cotillón'},{id:'demo5',name:'Vasos descartables x10',price:800,icon:'🥤',category:'Descartables'},{id:'demo6',name:'Auto de juguete',price:3500,icon:'🚗',category:'Juguetería'}];
 let cart={};let filter='Todos';try{cart=JSON.parse(localStorage.getItem('barraca_shop_demo_cart')||'{}')||{}}catch(e){cart={}};
