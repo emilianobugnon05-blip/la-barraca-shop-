@@ -21,14 +21,93 @@
 </main><nav class="nav"><div class="navinner"><button id="navhome" onclick="show('home')"><span class="ico">⌂</span>Inicio</button><button id="navcatalog" onclick="show('catalog')"><span class="ico">🎈</span>Productos</button><button id="navcart" onclick="show('cart')"><span class="ico">🛒</span>Carrito <span id="count">0</span></button></div></nav>
 <script>
 'use strict';
+ 
+const STOCK_URL = "https://iyrqarpotyckzozhnswx.supabase.co";
+const STOCK_KEY = "sb_publishable_HGEpi6b5IGWMo9zsNkBXLA_zn6HtSN3";
+let productosShop = null;
+async function cargarProductosShop() {
+  try {
+    const respuesta = await fetch(
+      STOCK_URL + "/rest/v1/productos?select=id,codigo_barras,nombre,precio_venta,stock,foto_path,publicar_shop&publicar_shop=eq.true&stock=gt.0",
+      {
+        headers: {
+          apikey: STOCK_KEY,
+          Authorization: "Bearer " + STOCK_KEY
+        }
+      }
+    );
+
+    if (!respuesta.ok) {
+      throw new Error("No se pudo consultar Stock");
+    }
+
+    productosShop = await respuesta.json();
+    console.log("Productos publicados:", productosShop.length);
+  } catch (error) {
+    console.error("Error de conexión:", error);
+  }
+}
+ 
+function convertirProductosShop() {
+  demo = productosShop.map(p => ({
+    id: String(p.id),
+    name: p.nombre,
+    price: Number(p.precio_venta),
+    icon: "🛍️",
+    category: "Todos",
+    stock: Number(p.stock),
+    foto_path: p.foto_path
+  }));
+}
+
+
+
 // Productos de ejemplo: no representan precios ni existencias reales de La Barraca.
-const demo=[{id:'demo1',name:'Globos surtidos x10',price:1800,icon:'🎈',category:'Cotillón'},{id:'demo2',name:'Pirotín N°10 x100',price:2500,icon:'🧁',category:'Repostería'},{id:'demo3',name:'Granas de colores 100 g',price:1200,icon:'🍬',category:'Repostería'},{id:'demo4',name:'Papel picado x20',price:950,icon:'🎊',category:'Cotillón'},{id:'demo5',name:'Vasos descartables x10',price:800,icon:'🥤',category:'Descartables'},{id:'demo6',name:'Auto de juguete',price:3500,icon:'🚗',category:'Juguetería'}];
+let demo=[{id:'demo1',name:'Globos surtidos x10',price:1800,icon:'🎈',category:'Cotillón'},{id:'demo2',name:'Pirotín N°10 x100',price:2500,icon:'🧁',category:'Repostería'},{id:'demo3',name:'Granas de colores 100 g',price:1200,icon:'🍬',category:'Repostería'},{id:'demo4',name:'Papel picado x20',price:950,icon:'🎊',category:'Cotillón'},{id:'demo5',name:'Vasos descartables x10',price:800,icon:'🥤',category:'Descartables'},{id:'demo6',name:'Auto de juguete',price:3500,icon:'🚗',category:'Juguetería'}];
 let cart={};let filter='Todos';try{cart=JSON.parse(localStorage.getItem('barraca_shop_demo_cart')||'{}')||{}}catch(e){cart={}};
 const money=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(n);const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);const total=()=>demo.reduce((sum,p)=>sum+(cart[p.id]||0)*p.price,0);
 function save(){localStorage.setItem('barraca_shop_demo_cart',JSON.stringify(cart));document.getElementById('count').textContent=count()}
 function show(section,cat){if(cat)filter=cat;['home','catalog','cart','checkout','success'].forEach(x=>document.getElementById(x).hidden=x!==section);document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));let n=document.getElementById('nav'+(section==='home'?'home':section==='catalog'?'catalog':'cart'));if(n)n.classList.add('active');if(section==='catalog')renderProducts();if(section==='cart')renderCart();if(section==='checkout')renderCheckout();window.scrollTo(0,0)}
-function renderProducts(){const categories=['Todos','Cotillón','Repostería','Juguetería','Descartables','Ofertas'];document.getElementById('chips').innerHTML=categories.map(c=>`<button class="chip ${filter===c?'selected':''}" onclick="chooseCategory('${c}')">${c}</button>`).join('');const q=document.getElementById('search').value.trim().toLowerCase();let list=demo.filter(p=>(filter==='Todos'||p.category===filter)&&p.name.toLowerCase().includes(q));document.getElementById('products').innerHTML=list.length?list.map(p=>`<article class="product"><div class="photo">${p.icon}</div><div class="details"><strong>${p.name}</strong><div class="price">${money(p.price)}</div><div class="hint">Producto de demostración</div></div><button class="plus" aria-label="Agregar ${p.name}" onclick="add('${p.id}')">+</button></article>`).join(''):'<p class="empty">No hay productos para mostrar en esta categoría.</p>'}
-function chooseCategory(c){filter=c;renderProducts()}function add(id){cart[id]=(cart[id]||0)+1;save();const b=document.getElementById('count');b.animate([{transform:'scale(1.6)'},{transform:'scale(1)'}],{duration:240})}function change(id,delta){cart[id]=Math.max(0,(cart[id]||0)+delta);if(!cart[id])delete cart[id];save();renderCart()}function removeItem(id){delete cart[id];save();renderCart()}
+
+function renderProducts() {
+  const categories = [
+    'Todos', 'Cotillón', 'Repostería',
+    'Juguetería', 'Descartables', 'Ofertas'
+  ];
+
+  document.getElementById('chips').innerHTML =
+    categories.map(c =>
+      `<button class="chip ${filter === c ? 'selected' : ''}"
+        onclick="chooseCategory('${c}')">${c}</button>`
+    ).join('');
+
+  const q = document.getElementById('search')
+    .value.trim().toLowerCase();
+
+  const list = demo.filter(p =>
+    (filter === 'Todos' || p.category === filter) &&
+    p.name.toLowerCase().includes(q)
+  );
+
+  document.getElementById('products').innerHTML =
+    list.length
+      ? list.map(p => `
+        <article class="product">
+          <div class="photo">${p.icon || '🛍️'}</div>
+          <div class="details">
+            <strong>${p.name}</strong>
+            <div class="price">${money(p.price)}</div>
+            <div class="hint">Disponible</div>
+          </div>
+          <button class="plus"
+            aria-label="Agregar producto"
+            onclick="add('${p.id}')">+</button>
+        </article>
+      `).join('')
+      : '<p class="empty">No hay productos disponibles.</p>';
+}
+
+ function chooseCategory(c){filter=c;renderProducts()}function add(id){cart[id]=(cart[id]||0)+1;save();const b=document.getElementById('count');b.animate([{transform:'scale(1.6)'},{transform:'scale(1)'}],{duration:240})}function change(id,delta){cart[id]=Math.max(0,(cart[id]||0)+delta);if(!cart[id])delete cart[id];save();renderCart()}function removeItem(id){delete cart[id];save();renderCart()}
 function renderCart(){const items=demo.filter(p=>cart[p.id]);document.getElementById('cartitems').innerHTML=items.length?items.map(p=>`<div class="cartrow"><div class="photo">${p.icon}</div><div class="details"><strong>${p.name}</strong><div class="price">${money(p.price*cart[p.id])}</div></div><div class="qty"><button aria-label="Restar" onclick="change('${p.id}',-1)">−</button>${cart[p.id]}<button aria-label="Sumar" onclick="change('${p.id}',1)">+</button></div><button class="remove" aria-label="Quitar" onclick="removeItem('${p.id}')">♜</button></div>`).join(''):'<p class="empty">Tu carrito está vacío. ¡Elegí algunos productos!</p>';document.getElementById('carttotal').innerHTML=items.length?`<div class="summary"><strong>${count()} unidades</strong><span>Total: <span class="total">${money(total())}</span></span></div>`:'';document.getElementById('checkoutbtn').hidden=!items.length}
 function renderCheckout(){if(!count()){show('cart');return}document.getElementById('checktotal').innerHTML=`<strong>Subtotal de productos</strong><span class="total">${money(total())}</span>`;deliveryChange()}
 function deliveryChange(){let val=document.querySelector('input[name="delivery"]:checked').value;let delivery=val!=='Retiro en el local';document.getElementById('addresswrap').hidden=!delivery;['street','number','city'].forEach(id=>document.getElementById(id).required=delivery);if(val==='Envío en San Javier'&& !document.getElementById('city').value.trim())document.getElementById('city').value='San Javier';document.getElementById('deliverynotice').textContent=delivery?'El costo del envío se confirmará antes de cobrar. Esta versión no realiza pedidos ni pagos reales.':'Retiro en el local sin costo de envío. Esta versión no realiza pedidos ni pagos reales.'}
@@ -42,5 +121,25 @@ async function installShop(){
  document.getElementById('installhelp').textContent=ios?'En Safari, tocá Compartir y elegí «Agregar a pantalla de inicio».':'En Chrome, abrí el menú ⋮ y elegí «Instalar aplicación» o «Agregar a pantalla principal». Si no aparece, esperá un momento y recargá.';
 }
 if('serviceWorker' in navigator && location.protocol==='https:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-save();show('home');
+
+save();
+show('home');
+
+
+async function iniciarCatalogoReal() {
+  await cargarProductosShop();
+
+  if (!Array.isArray(productosShop)) {
+    console.error("No se pudo cargar el catálogo");
+    return;
+  }
+
+  convertirProductosShop();
+  save();
+  renderProducts();
+}
+
+
+iniciarCatalogoReal();
+
 </script></body></html>
