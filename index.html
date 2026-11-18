@@ -92,7 +92,14 @@ function renderProducts() {
     list.length
       ? list.map(p => `
         <article class="product">
-          <div class="photo">${p.icon || '🛍️'}</div>
+        <div class="photo">
+  ${p.foto_path
+    ? `<img src="${STOCK_URL}/storage/v1/object/public/productos-fotos/${p.foto_path}"
+        alt="Foto del producto"
+        style="width:100%;height:100%;object-fit:cover;border-radius:13px"
+        onerror="this.style.display='none'">`
+    : (p.icon || '🛍️')}
+</div>
           <div class="details">
             <strong>${p.name}</strong>
             <div class="price">${money(p.price)}</div>
