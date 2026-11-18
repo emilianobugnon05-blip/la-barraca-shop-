@@ -28,8 +28,8 @@ let productosShop = null;
 async function cargarProductosShop() {
   try {
     const respuesta = await fetch(
-      STOCK_URL + "/rest/v1/productos?select=id,codigo_barras,nombre,precio_venta,stock,foto_path,publicar_shop&publicar_shop=eq.true&stock=gt.0",
-      {
+STOCK_URL + "/rest/v1/productos?select=id,codigo_barras,nombre,precio_venta,stock,foto_path,categoria,publicar_shop&publicar_shop=eq.true&stock=gt.0",
+     {
         headers: {
           apikey: STOCK_KEY,
           Authorization: "Bearer " + STOCK_KEY
@@ -54,7 +54,7 @@ function convertirProductosShop() {
     name: p.nombre,
     price: Number(p.precio_venta),
     icon: "🛍️",
-    category: "Todos",
+    category: p.categoria || "Todos",
     stock: Number(p.stock),
     foto_path: p.foto_path
   }));
