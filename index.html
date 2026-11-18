@@ -36,10 +36,10 @@ async function cargarProductosShop() {
         }
       }
     );
-
-    if (!respuesta.ok) {
-      throw new Error("No se pudo consultar Stock");
-    }
+if (!respuesta.ok) {
+  const detalle = await respuesta.text();
+  throw new Error("Supabase " + respuesta.status + ": " + detalle);
+}
 
     productosShop = await respuesta.json();
     console.log("Productos publicados:", productosShop.length);
@@ -62,8 +62,8 @@ function convertirProductosShop() {
 
 
 // Productos de ejemplo: no representan precios ni existencias reales de La Barraca.
-let demo=[{id:'demo1',name:'Globos surtidos x10',price:1800,icon:'🎈',category:'Cotillón'},{id:'demo2',name:'Pirotín N°10 x100',price:2500,icon:'🧁',category:'Repostería'},{id:'demo3',name:'Granas de colores 100 g',price:1200,icon:'🍬',category:'Repostería'},{id:'demo4',name:'Papel picado x20',price:950,icon:'🎊',category:'Cotillón'},{id:'demo5',name:'Vasos descartables x10',price:800,icon:'🥤',category:'Descartables'},{id:'demo6',name:'Auto de juguete',price:3500,icon:'🚗',category:'Juguetería'}];
-let cart={};let filter='Todos';try{cart=JSON.parse(localStorage.getItem('barraca_shop_demo_cart')||'{}')||{}}catch(e){cart={}};
+let demo=[];
+ let cart={};let filter='Todos';try{cart=JSON.parse(localStorage.getItem('barraca_shop_demo_cart')||'{}')||{}}catch(e){cart={}};
 const money=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(n);const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);const total=()=>demo.reduce((sum,p)=>sum+(cart[p.id]||0)*p.price,0);
 function save(){localStorage.setItem('barraca_shop_demo_cart',JSON.stringify(cart));document.getElementById('count').textContent=count()}
 function show(section,cat){if(cat)filter=cat;['home','catalog','cart','checkout','success'].forEach(x=>document.getElementById(x).hidden=x!==section);document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));let n=document.getElementById('nav'+(section==='home'?'home':section==='catalog'?'catalog':'cart'));if(n)n.classList.add('active');if(section==='catalog')renderProducts();if(section==='cart')renderCart();if(section==='checkout')renderCheckout();window.scrollTo(0,0)}
