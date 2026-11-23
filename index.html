@@ -26,6 +26,33 @@
 .products .plus{
   align-self:flex-end;
 }
+  .foto-ampliada{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.94);
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.foto-ampliada img{
+  max-width:100%;
+  max-height:85vh;
+  object-fit:contain;
+}
+.cerrar-foto{
+  position:absolute;
+  top:25px;
+  right:20px;
+  background:#e91523;
+  color:white;
+  border:0;
+  border-radius:50%;
+  width:44px;
+  height:44px;
+  font-size:28px;
+}
 </style>
 </head>
 <body><main class="app"><section id="home"><header class="header"><div class="awning" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div><h1>La Barraca</h1><p class="sub">Cotillón · Repostería · Juguetería · Descartables</p><div class="redline"></div></header><div class="welcome"><h2>🎉 ¡Bienvenido!</h2><p>Realizá tu compra de forma<br>rápida y sencilla</p></div><div class="tiles"><button class="tile primary" onclick="show('catalog')"><span class="emoji">🛒</span><strong>Nueva compra</strong><small>Agregá productos a tu carrito</small></button><button class="tile" onclick="show('catalog');document.getElementById('search').focus()"><span class="emoji">🔎</span><strong>Buscá producto</strong><small>Encontrá lo que necesitás</small></button><button class="tile" onclick="show('catalog')"><span class="emoji">🎈</span><strong>Productos</strong><small>Ver todo el catálogo</small></button><button class="tile" onclick="show('catalog','Ofertas')"><span class="emoji">🏷️</span><strong>Ofertas</strong><small>Descuentos especiales</small></button></div><div class="banner"><span>🎁 🎈 🧁</span><br>¡Disfrutá tus fiestas!</div><div class="installbox"><button id="installbtn" type="button" onclick="installShop()">📲 Instalar La Barraca</button><p id="installhelp">Agregá la tienda a la pantalla de inicio de tu celular.</p></div><p class="footerhint">Tienda en preparación · Catálogo de demostración</p></section>
@@ -39,6 +66,10 @@
 <div class="field"><label for="references">Referencias para encontrar el domicilio (opcional)</label><textarea id="references" rows="2" placeholder="Entre calles, color de casa, punto de referencia..."></textarea></div>
 </div><div class="field"><label for="observations">Observaciones del pedido (opcional)</label><textarea id="observations" rows="3" maxlength="600" placeholder="Colores, presentación, horarios u otras indicaciones"></textarea></div><h3>¿Cómo preferís pagar?</h3><label class="choice"><input type="radio" name="payment" value="A coordinar" checked> 💬 Coordinar el pago con el negocio</label><label class="choice"><input type="radio" name="payment" value="Mercado Pago (futuro)"> 💳 Mercado Pago (próximamente)</label><div class="notice" id="deliverynotice">Los precios y medios de pago definitivos se confirmarán antes de habilitar pedidos reales.</div><div id="checktotal" class="summary"></div><button class="action primary" type="submit">Simular pedido ✓</button></form></section>
 <section id="success" hidden><div style="text-align:center;padding:65px 10px"><div style="font-size:70px">✅</div><h2>¡Simulación completada!</h2><p>Esta es una demostración. No se envió ningún pedido al negocio.</p><button class="action primary" onclick="show('home')">Volver al inicio</button></div></section>
+<div id="visorFoto" class="foto-ampliada" hidden onclick="cerrarFoto()">
+  <button class="cerrar-foto" type="button" onclick="cerrarFoto()" aria-label="Cerrar">×</button>
+  <img id="imagenGrande" alt="Fotografía ampliada del producto">
+</div>
 </main><nav class="nav"><div class="navinner"><button id="navhome" onclick="show('home')"><span class="ico">⌂</span>Inicio</button><button id="navcatalog" onclick="show('catalog')"><span class="ico">🎈</span>Productos</button><button id="navcart" onclick="show('cart')"><span class="ico">🛒</span>Carrito <span id="count">0</span></button></div></nav>
 <script>
 'use strict';
@@ -116,7 +147,7 @@ function renderProducts() {
         <div class="photo">
   ${p.foto_path
     ? `<img src="${STOCK_URL}/storage/v1/object/public/productos-fotos./${p.foto_path}"
-        alt="Foto del producto"
+        onclick="abrirFoto(this.src)" alt="Foto del producto"
         style="width:100%;height:100%;object-fit:cover;border-radius:13px"
         onerror="this.style.display='none'">`
     : (p.icon || '🛍️')}
@@ -168,5 +199,13 @@ async function iniciarCatalogoReal() {
 
 
 iniciarCatalogoReal();
+function abrirFoto(src) {
+  document.getElementById('imagenGrande').src = src;
+  document.getElementById('visorFoto').hidden = false;
+}
 
+function cerrarFoto() {
+  document.getElementById('visorFoto').hidden = true;
+  document.getElementById('imagenGrande').removeAttribute('src');
+}
 </script></body></html>
