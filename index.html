@@ -86,7 +86,7 @@ let productosShop = null;
 async function cargarProductosShop() {
   try {
     const respuesta = await fetch(
-STOCK_URL + "/rest/v1/productos?select=id,codigo_barras,nombre,precio_venta,stock,foto_path,categoria,publicar_shop&publicar_shop=eq.true&stock=gt.0",
+STOCK_URL + "/rest/v1/productos?select=id,codigo_barras,nombre,precio_venta,stock,foto_path,categoria,publicar_shop,en_promocion,precio_promocion&publicar_shop=eq.true&stock=gt.0",
      {
         headers: {
           apikey: STOCK_KEY,
@@ -110,8 +110,16 @@ function convertirProductosShop() {
   demo = productosShop.map(p => ({
     id: String(p.id),
     name: p.nombre,
-    price: Number(p.precio_venta),
-    icon: "🛍️",
+   price: p.en_promocion === true &&
+       p.precio_promocion != null &&
+       Number(p.precio_promocion) > 0 &&
+       Number(p.precio_promocion) < Number(p.precio_venta)
+  ? Number(p.precio_promocion)
+  : Number(p.precio_venta), 
+ precio_original: Number(p.precio_venta),
+en_promocion: p.en_promocion === true,
+precio_promocion: p.precio_promocion == null ? null : Number(p.precio_promocion),
+   icon: "🛍️",
     category: p.categoria || "Todos",
     stock: Number(p.stock),
     foto_path: p.foto_path
@@ -160,7 +168,12 @@ function renderProducts() {
 </div>
           <div class="details">
             <strong>${p.name}</strong>
-            <div class="price">${money(p.price)}</div>
+           ${p.en_promocion && p.precio_promocion > 0 && p.precio_promocion < p.precio_original
+  ? `<div style="color:#aaa;text-decoration:line-through;font-size:14px">${money(p.precio_original)}</div>
+     <div class="price" style="color:#ff4545">${money(p.price)}</div>
+     <span style="background:#dc2626;color:white;padding:4px 9px;border-radius:6px;font-size:12px;font-weight:bold">🔥 OFERTA</span>`
+  : `<div class="price">${money(p.price)}</div>`
+} 
             <div class="hint">Disponible</div>
           </div>
           <button class="plus"
