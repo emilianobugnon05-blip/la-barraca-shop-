@@ -4,228 +4,59 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090a0e"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="La Barraca"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-192.png"><title>La Barraca | Cotillón, Repostería y Juguetería</title>
 <style>
-:root{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#fff;background:#090a0e;--red:#e91523;--card:#171b24;--muted:#b5bac5}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#4b0711,transparent 48%),#090a0e;min-height:100vh}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #ff7580;outline-offset:2px}.app{max-width:570px;margin:auto;padding:0 16px 96px}.header{text-align:center;padding:18px 0 8px}.awning{height:62px;width:210px;margin:0 auto -6px;position:relative;filter:drop-shadow(0 8px 12px #d5103255);display:flex;overflow:hidden;border-radius:9px 9px 23px 23px;transform:perspective(220px) rotateX(8deg)}.awning span{flex:1;background:linear-gradient(#f53a44,#c40819);border-radius:0 0 15px 15px}.awning span:nth-child(even){background:linear-gradient(#fff,#e8e9ef)}h1{font-size:clamp(38px,10vw,54px);font-style:italic;letter-spacing:-2px;margin:0;text-shadow:2px 3px 0 #b30016}.sub{font-size:14px;font-weight:700;color:#eee;margin:0}.redline{height:4px;width:75%;background:var(--red);border-radius:10px;margin:12px auto}.welcome{text-align:center;border:1px solid #515866;border-radius:18px;padding:17px 10px;margin:16px 0 14px;background:linear-gradient(135deg,#222632,#101219)}.welcome h2{font-size:29px;margin:0 0 3px}.welcome p{font-size:16px;margin:0}.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{border:1px solid #5b626e;border-radius:18px;background:linear-gradient(135deg,#222735,#101219);min-height:140px;color:#fff;padding:15px 9px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}.tile.primary,.primary{background:linear-gradient(145deg,#ff303c,#c50012);border-color:#ff7680}.tile .emoji{font-size:39px;line-height:1.1;margin-bottom:8px}.tile strong{font-size:20px}.tile small{font-size:12px;color:#e3e5eb;margin-top:5px}.banner{margin-top:15px;border-radius:16px;background:linear-gradient(105deg,#8d0012,#e60023 55%,#600009);padding:18px 12px;text-align:center;font-size:24px;font-style:italic;font-weight:850}.banner span{font-size:30px}.nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;background:#101218;border-top:1px solid #373d48;z-index:5;padding:8px 0 max(8px,env(safe-area-inset-bottom))}.navinner{max-width:570px;width:100%;display:flex}.nav button{width:33.33%;border:0;background:transparent;color:#c4c7d1;font-size:12px;padding:5px}.nav button.active{color:#ff3848}.nav .ico{font-size:24px;display:block}.top{display:flex;align-items:center;gap:12px;margin:18px 0}.back{border:0;background:none;color:white;font-size:25px}.top h2{margin:0;font-size:24px}.search{width:100%;background:#1a1e28;color:white;border:1px solid #5c6270;border-radius:15px;padding:15px;margin:4px 0 12px}.chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:12px}.chip{border:1px solid #555b69;background:#171b24;color:white;border-radius:14px;padding:9px 13px;white-space:nowrap}.chip.selected{background:var(--red);border-color:var(--red)}.products{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}.product{background:#151922;border:1px solid #333b48;border-radius:15px;padding:12px;display:flex;gap:12px;align-items:center}.photo{width:68px;height:68px;flex:none;border-radius:13px;background:linear-gradient(135deg,#3a2133,#151c29);display:grid;place-items:center;font-size:39px}.details{flex:1;min-width:0}.details strong{display:block;font-size:15px}.price{font-weight:800;font-size:20px;margin-top:4px}.hint{color:var(--muted);font-size:12px}.plus{background:var(--red);color:white;border:0;border-radius:50%;width:40px;height:40px;font-size:27px;flex:none}.cartrow{display:flex;gap:10px;align-items:center;border:1px solid #353c49;border-radius:14px;background:#171b24;padding:10px;margin-bottom:10px}.cartrow .photo{width:55px;height:55px;font-size:30px}.qty{display:flex;align-items:center;gap:8px}.qty button{background:#2b303c;color:white;border:1px solid #6a7180;border-radius:50%;height:30px;width:30px}.remove{border:0;background:none;color:#ff5863;font-size:21px}.summary{border:1px solid #515764;border-radius:15px;padding:15px;margin:16px 0;display:flex;justify-content:space-between;align-items:center}.total{color:#ff3648;font-size:24px;font-weight:900}.action{display:block;width:100%;padding:15px;border:1px solid #ff8d94;border-radius:14px;color:white;font-weight:800;font-size:17px;margin:12px 0}.secondary{background:#222631;border:1px solid #5b6371}.field{display:block;margin:14px 0}.field label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}.field input,.field select,.field textarea{display:block;width:100%;padding:13px;border:1px solid #545d6b;border-radius:11px;background:#191d27;color:#fff}.choice{display:block;border:1px solid #525b6a;background:#181d27;padding:13px;border-radius:13px;margin:9px 0}.choice input{accent-color:var(--red)}.notice{border:1px solid #946e32;background:#332819;border-radius:12px;padding:12px;color:#ffe1a2;font-size:13px;margin:13px 0}.empty{text-align:center;color:#c5c7d0;padding:38px 14px}.installbox{margin:14px 0;padding:12px;border:1px solid #555b69;border-radius:15px;background:#171b24;text-align:center}.installbox button{padding:12px 18px;border-radius:12px;border:1px solid #ff7882;background:#bb0c20;color:white;font-weight:800}.installbox p{font-size:12px;color:#c4c7d1;margin:8px 0 0}.footerhint{text-align:center;color:#9299a6;font-size:12px;padding:20px 0} [hidden]{display:none!important}
-.products .product{
-  flex-direction:column;
-  align-items:stretch;
-  padding:8px;
-}
-.products .photo{
-  width:100%;
-  height:auto;
-  aspect-ratio:1/1;
-  overflow:hidden;
-}
-.products .details{
-  width:100%;
-}
-.products .plus{
-  align-self:stretch;
-  width:100%;
-  height:46px;
-  border-radius:12px;
-  font-size:16px;
-  font-weight:800;
-  margin-top:auto;
-}
-  .foto-ampliada{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.94);
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-.foto-ampliada img{
-  max-width:100%;
-  max-height:85vh;
-  object-fit:contain;
-}
-.cerrar-foto{
-  position:absolute;
-  top:25px;
-  right:20px;
-  background:#e91523;
-  color:white;
-  border:0;
-  border-radius:50%;
-  width:44px;
-  height:44px;
-  font-size:28px;
-}
+:root{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#fff;background:#090a0e;--red:#e91523;--muted:#b5bac5}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#4b0711,transparent 48%),#090a0e;min-height:100vh}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #ff7580;outline-offset:2px}.app{max-width:570px;margin:auto;padding:0 16px 96px}.header{text-align:center;padding:18px 0 8px}.awning{height:62px;width:210px;margin:0 auto -6px;position:relative;filter:drop-shadow(0 8px 12px #d5103255);display:flex;overflow:hidden;border-radius:9px 9px 23px 23px;transform:perspective(220px) rotateX(8deg)}.awning span{flex:1;background:linear-gradient(#f53a44,#c40819);border-radius:0 0 15px 15px}.awning span:nth-child(even){background:linear-gradient(#fff,#e8e9ef)}h1{font-size:clamp(38px,10vw,54px);font-style:italic;letter-spacing:-2px;margin:0;text-shadow:2px 3px 0 #b30016}.sub{font-size:14px;font-weight:700;color:#eee;margin:0}.redline{height:4px;width:75%;background:var(--red);border-radius:10px;margin:12px auto}.welcome{text-align:center;border:1px solid #515866;border-radius:18px;padding:17px 10px;margin:16px 0 14px;background:linear-gradient(135deg,#222632,#101219)}.welcome h2{font-size:29px;margin:0 0 3px}.welcome p{font-size:16px;margin:0}.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{border:1px solid #5b626e;border-radius:18px;background:linear-gradient(135deg,#222735,#101219);min-height:140px;color:#fff;padding:15px 9px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}.tile.primary,.primary{background:linear-gradient(145deg,#ff303c,#c50012);border-color:#ff7680}.tile .emoji{font-size:39px;line-height:1.1;margin-bottom:8px}.tile strong{font-size:20px}.tile small{font-size:12px;color:#e3e5eb;margin-top:5px}.banner{margin-top:15px;border-radius:16px;background:linear-gradient(105deg,#8d0012,#e60023 55%,#600009);padding:18px 12px;text-align:center;font-size:24px;font-style:italic;font-weight:850}.banner span{font-size:30px}.nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;background:#101218;border-top:1px solid #373d48;z-index:5;padding:8px 0 max(8px,env(safe-area-inset-bottom))}.navinner{max-width:570px;width:100%;display:flex}.nav button{width:33.33%;border:0;background:transparent;color:#c4c7d1;font-size:12px;padding:5px}.nav button.active{color:#ff3848}.nav .ico{font-size:24px;display:block}.top{display:flex;align-items:center;gap:12px;margin:18px 0}.back{border:0;background:none;color:white;font-size:25px}.top h2{margin:0;font-size:24px}.search{width:100%;background:#1a1e28;color:white;border:1px solid #5c6270;border-radius:15px;padding:15px;margin:4px 0 12px}.chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:12px}.chip{border:1px solid #555b69;background:#171b24;color:white;border-radius:14px;padding:9px 13px;white-space:nowrap}.chip.selected{background:var(--red);border-color:var(--red)}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product{background:#151922;border:1px solid #333b48;border-radius:15px;padding:8px;display:flex;flex-direction:column;gap:12px;align-items:stretch}.photo{width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:13px;background:linear-gradient(135deg,#3a2133,#151c29);display:grid;place-items:center;font-size:39px}.photo img{width:100%;height:100%;object-fit:cover}.details{flex:1;min-width:0}.details strong{display:block;font-size:15px;overflow-wrap:anywhere}.price{font-weight:800;font-size:20px;margin-top:4px}.hint{color:var(--muted);font-size:12px}.plus{background:var(--red);color:white;border:0;border-radius:12px;width:100%;height:46px;font-size:16px;font-weight:800;margin-top:auto}.plus:disabled{opacity:.45;cursor:not-allowed}.cartrow{display:flex;gap:10px;align-items:center;border:1px solid #353c49;border-radius:14px;background:#171b24;padding:10px;margin-bottom:10px}.cartrow .photo{width:55px;height:55px;flex:none;font-size:30px}.qty{display:flex;align-items:center;gap:8px}.qty button{background:#2b303c;color:white;border:1px solid #6a7180;border-radius:50%;height:30px;width:30px}.remove{border:0;background:none;color:#ff5863;font-size:21px}.summary{border:1px solid #515764;border-radius:15px;padding:15px;margin:16px 0;display:flex;justify-content:space-between;align-items:center;gap:8px}.total{color:#ff3648;font-size:24px;font-weight:900}.action{display:block;width:100%;padding:15px;border:1px solid #ff8d94;border-radius:14px;color:white;font-weight:800;font-size:17px;margin:12px 0}.secondary{background:#222631;border:1px solid #5b6371}.field{display:block;margin:14px 0}.field label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}.field input,.field select,.field textarea{display:block;width:100%;padding:13px;border:1px solid #545d6b;border-radius:11px;background:#191d27;color:#fff}.choice{display:block;border:1px solid #525b6a;background:#181d27;padding:13px;border-radius:13px;margin:9px 0}.choice input{accent-color:var(--red)}.notice{border:1px solid #946e32;background:#332819;border-radius:12px;padding:12px;color:#ffe1a2;font-size:13px;margin:13px 0}.empty{text-align:center;color:#c5c7d0;padding:38px 14px}.installbox{margin:14px 0;padding:12px;border:1px solid #555b69;border-radius:15px;background:#171b24;text-align:center}.installbox button{padding:12px 18px;border-radius:12px;border:1px solid #ff7882;background:#bb0c20;color:white;font-weight:800}.installbox p{font-size:12px;color:#c4c7d1;margin:8px 0 0}.footerhint{text-align:center;color:#9299a6;font-size:12px;padding:20px 0}.foto-ampliada{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}.foto-ampliada img{max-width:100%;max-height:85vh;object-fit:contain}.cerrar-foto{position:absolute;top:25px;right:20px;background:#e91523;color:white;border:0;border-radius:50%;width:44px;height:44px;font-size:28px}[hidden]{display:none!important}
 </style>
 </head>
-<body><main class="app"><section id="home"><header class="header"><div class="awning" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div><h1>La Barraca</h1><p class="sub">Cotillón · Repostería · Juguetería · Descartables</p><div class="redline"></div></header><div class="welcome"><h2>🎉 ¡Bienvenido!</h2><p>Realizá tu compra de forma<br>rápida y sencilla</p></div><div class="tiles"><button class="tile primary" onclick="show('catalog')"><span class="emoji">🛒</span><strong>Nueva compra</strong><small>Agregá productos a tu carrito</small></button><button class="tile" onclick="show('catalog');document.getElementById('search').focus()"><span class="emoji">🔎</span><strong>Buscá producto</strong><small>Encontrá lo que necesitás</small></button><button class="tile" onclick="show('catalog')"><span class="emoji">🎈</span><strong>Productos</strong><small>Ver todo el catálogo</small></button><button class="tile" onclick="show('catalog','Ofertas')"><span class="emoji">🏷️</span><strong>Ofertas</strong><small>Descuentos especiales</small></button></div><div class="banner"><span>🎁 🎈 🧁</span><br>¡Disfrutá tus fiestas!</div><div class="installbox"><button id="installbtn" type="button" onclick="installShop()">📲 Instalar La Barraca</button><p id="installhelp">Agregá la tienda a la pantalla de inicio de tu celular.</p></div><p class="footerhint">Tienda en preparación · Catálogo de demostración</p></section>
+<body><main class="app">
+<section id="home"><header class="header"><div class="awning" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div><h1>La Barraca</h1><p class="sub">Cotillón · Repostería · Juguetería · Descartables</p><div class="redline"></div></header><div class="welcome"><h2>🎉 ¡Bienvenido!</h2><p>Realizá tu compra de forma rápida y sencilla</p></div><div class="tiles"><button class="tile primary" onclick="show('catalog')"><span class="emoji">🛒</span><strong>Nueva compra</strong><small>Agregá productos a tu carrito</small></button><button class="tile" onclick="show('catalog');document.getElementById('search').focus()"><span class="emoji">🔎</span><strong>Buscá producto</strong><small>Encontrá lo que necesitás</small></button><button class="tile" onclick="show('catalog')"><span class="emoji">🎈</span><strong>Productos</strong><small>Ver todo el catálogo</small></button><button class="tile" onclick="show('catalog','Ofertas')"><span class="emoji">🏷️</span><strong>Ofertas</strong><small>Descuentos especiales</small></button></div><div class="banner"><span>🎁 🎈 🧁</span><br>¡Disfrutá tus fiestas!</div><div class="installbox"><button id="installbtn" type="button" onclick="installShop()">📲 Instalar La Barraca</button><p id="installhelp">Agregá la tienda a la pantalla de inicio de tu celular.</p></div><p class="footerhint">Catálogo real · Pedidos por WhatsApp sujetos a confirmación</p></section>
 <section id="catalog" hidden><div class="top"><button class="back" onclick="show('home')">‹</button><h2>Productos</h2></div><input id="search" class="search" type="search" placeholder="🔎 Buscar producto por nombre o código" oninput="renderProducts()"><div id="chips" class="chips"></div><div id="products" class="products"></div></section>
 <section id="cart" hidden><div class="top"><button class="back" onclick="show('home')">‹</button><h2>Mi carrito</h2></div><div id="cartitems"></div><div id="carttotal"></div><button id="checkoutbtn" class="action primary" onclick="show('checkout')">Finalizar compra ›</button></section>
-<section id="checkout" hidden><div class="top"><button class="back" onclick="show('cart')">‹</button><h2>Finalizar compra</h2></div><div class="notice">Versión de prueba: no se envían pedidos ni se realizan pagos reales.</div><form id="orderform" onsubmit="simulateOrder(event)"><div class="field"><label for="fullname">Nombre y apellido *</label><input id="fullname" required autocomplete="name"></div><div class="field"><label for="phone">Teléfono / WhatsApp *</label><input id="phone" required inputmode="tel" autocomplete="tel"></div><h3>¿Cómo querés recibir tu pedido?</h3><label class="choice"><input type="radio" name="delivery" value="Retiro en el local" checked onchange="deliveryChange()"> 🏪 Retiro en el local (sin costo)</label><label class="choice"><input type="radio" name="delivery" value="Envío en San Javier" onchange="deliveryChange()"> 🚚 Envío en San Javier</label><label class="choice"><input type="radio" name="delivery" value="Localidad cercana" onchange="deliveryChange()"> 🚛 Localidad cercana (comisionista)</label><div id="addresswrap" hidden>
-<div class="field"><label for="city">Localidad *</label><input id="city" autocomplete="address-level2" placeholder="San Javier u otra localidad"></div>
-<div class="field"><label for="street">Calle *</label><input id="street" autocomplete="address-line1" placeholder="Nombre de la calle"></div>
-<div class="field"><label for="number">Número / altura *</label><input id="number" placeholder="Ej.: 123 o S/N"></div>
-<div class="field"><label for="neighborhood">Barrio (opcional)</label><input id="neighborhood" placeholder="Nombre del barrio"></div>
-<div class="field"><label for="references">Referencias para encontrar el domicilio (opcional)</label><textarea id="references" rows="2" placeholder="Entre calles, color de casa, punto de referencia..."></textarea></div>
-</div><div class="field"><label for="observations">Observaciones del pedido (opcional)</label><textarea id="observations" rows="3" maxlength="600" placeholder="Colores, presentación, horarios u otras indicaciones"></textarea></div><h3>¿Cómo preferís pagar?</h3><label class="choice"><input type="radio" name="payment" value="A coordinar" checked> 💬 Coordinar el pago con el negocio</label><label class="choice"><input type="radio" name="payment" value="Mercado Pago (futuro)"> 💳 Mercado Pago (próximamente)</label><div class="notice" id="deliverynotice">Los precios y medios de pago definitivos se confirmarán antes de habilitar pedidos reales.</div><div id="checktotal" class="summary"></div><button class="action primary" type="submit">Simular pedido ✓</button></form></section>
-<section id="success" hidden><div style="text-align:center;padding:65px 10px"><div style="font-size:70px">✅</div><h2>¡Simulación completada!</h2><p>Esta es una demostración. No se envió ningún pedido al negocio.</p><button class="action primary" onclick="show('home')">Volver al inicio</button></div></section>
-<div id="visorFoto" class="foto-ampliada" hidden onclick="cerrarFoto()">
-  <button class="cerrar-foto" type="button" onclick="cerrarFoto()" aria-label="Cerrar">×</button>
-  <img id="imagenGrande" alt="Fotografía ampliada del producto">
-</div>
+<section id="checkout" hidden><div class="top"><button class="back" onclick="show('cart')">‹</button><h2>Finalizar compra</h2></div><div class="notice">Tu pedido se prepara para enviar por WhatsApp. La compra queda sujeta a confirmación del negocio. No se realizan pagos desde esta página.</div><form id="orderform" onsubmit="prepararPedidoWhatsApp(event)"><div class="field"><label for="fullname">Nombre y apellido *</label><input id="fullname" required autocomplete="name"></div><div class="field"><label for="phone">Teléfono / WhatsApp *</label><input id="phone" required inputmode="tel" autocomplete="tel"></div><h3>¿Cómo querés recibir tu pedido?</h3><label class="choice"><input type="radio" name="delivery" value="Retiro en el local" checked onchange="deliveryChange()"> 🏪 Retiro en el local (sin costo)</label><label class="choice"><input type="radio" name="delivery" value="Envío en San Javier" onchange="deliveryChange()"> 🚚 Envío en San Javier</label><label class="choice"><input type="radio" name="delivery" value="Localidad cercana" onchange="deliveryChange()"> 🚛 Localidad cercana (comisionista)</label><div id="addresswrap" hidden><div class="field"><label for="city">Localidad *</label><input id="city" autocomplete="address-level2" placeholder="San Javier u otra localidad"></div><div class="field"><label for="street">Calle *</label><input id="street" autocomplete="address-line1" placeholder="Nombre de la calle"></div><div class="field"><label for="number">Número / altura *</label><input id="number" placeholder="Ej.: 123 o S/N"></div><div class="field"><label for="neighborhood">Barrio (opcional)</label><input id="neighborhood" placeholder="Nombre del barrio"></div><div class="field"><label for="references">Referencias (opcional)</label><textarea id="references" rows="2" placeholder="Entre calles, color de casa, punto de referencia..."></textarea></div></div><div class="field"><label for="observations">Observaciones del pedido (opcional)</label><textarea id="observations" rows="3" maxlength="600" placeholder="Colores, presentación u otras indicaciones"></textarea></div><h3>¿Cómo preferís pagar?</h3><label class="choice"><input type="radio" name="payment" value="Transferencia bancaria" checked> 🏦 Transferencia bancaria</label><label class="choice"><input type="radio" name="payment" value="Efectivo"> 💵 Efectivo</label><label class="choice"><input type="radio" name="payment" value="A coordinar"> 💬 Coordinar con el negocio</label><div class="notice" id="deliverynotice">El pago y el horario de retiro se coordinan por WhatsApp después de confirmar el pedido.</div><div id="checktotal" class="summary"></div><button class="action primary" type="submit">📲 Enviar pedido por WhatsApp</button><p class="hint">Al tocar el botón se abre WhatsApp con el mensaje listo. Para enviarlo, tocá Enviar dentro de WhatsApp.</p></form></section>
+<section id="success" hidden><div style="text-align:center;padding:65px 10px"><div style="font-size:70px">📲</div><h2>Pedido preparado</h2><p>Revisá WhatsApp y tocá Enviar. La Barraca confirmará disponibilidad y entrega.</p><button class="action primary" onclick="show('home')">Volver al inicio</button></div></section>
+<div id="visorFoto" class="foto-ampliada" hidden onclick="cerrarFoto()"><button class="cerrar-foto" type="button" onclick="cerrarFoto()" aria-label="Cerrar">×</button><img id="imagenGrande" alt="Fotografía ampliada del producto"></div>
 </main><nav class="nav"><div class="navinner"><button id="navhome" onclick="show('home')"><span class="ico">⌂</span>Inicio</button><button id="navcatalog" onclick="show('catalog')"><span class="ico">🎈</span>Productos</button><button id="navcart" onclick="show('cart')"><span class="ico">🛒</span>Carrito <span id="count">0</span></button></div></nav>
 <script>
 'use strict';
- 
-const STOCK_URL = "https://iyrqarpotyckzozhnswx.supabase.co";
-const STOCK_KEY = "sb_publishable_HGEpi6b5IGWMo9zsNkBXLA_zn6HtSN3";
-let productosShop = null;
-async function cargarProductosShop() {
-  try {
-    const respuesta = await fetch(
-STOCK_URL + "/rest/v1/productos?select=id,codigo_barras,nombre,precio_venta,stock,foto_path,categoria,publicar_shop,en_promocion,precio_promocion&publicar_shop=eq.true&stock=gt.0",
-     {
-        headers: {
-          apikey: STOCK_KEY,
-          Authorization: "Bearer " + STOCK_KEY
-        }
-      }
-    );
-if (!respuesta.ok) {
-  const detalle = await respuesta.text();
-  throw new Error("Supabase " + respuesta.status + ": " + detalle);
-}
-
-    productosShop = await respuesta.json();
-    console.log("Productos publicados:", productosShop.length);
-  } catch (error) {
-    console.error("Error de conexión:", error);
-  }
-}
- 
-function convertirProductosShop() {
-  demo = productosShop.map(p => ({
-    id: String(p.id),
-    name: p.nombre,
-   price: p.en_promocion === true &&
-       p.precio_promocion != null &&
-       Number(p.precio_promocion) > 0 &&
-       Number(p.precio_promocion) < Number(p.precio_venta)
-  ? Number(p.precio_promocion)
-  : Number(p.precio_venta), 
- precio_original: Number(p.precio_venta),
-en_promocion: p.en_promocion === true,
-precio_promocion: p.precio_promocion == null ? null : Number(p.precio_promocion),
-   icon: "🛍️",
-    category: p.categoria || "Todos",
-    stock: Number(p.stock),
-    foto_path: p.foto_path
-  }));
-}
-
-
-// Productos de ejemplo: no representan precios ni existencias reales de La Barraca.
-let demo=[];
- let cart={};let filter='Todos';try{cart=JSON.parse(localStorage.getItem('barraca_shop_demo_cart')||'{}')||{}}catch(e){cart={}};
-const money=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(n);const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);const total=()=>demo.reduce((sum,p)=>sum+(cart[p.id]||0)*p.price,0);
-function save(){localStorage.setItem('barraca_shop_demo_cart',JSON.stringify(cart));document.getElementById('count').textContent=count()}
-function show(section,cat){if(cat)filter=cat;['home','catalog','cart','checkout','success'].forEach(x=>document.getElementById(x).hidden=x!==section);document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));let n=document.getElementById('nav'+(section==='home'?'home':section==='catalog'?'catalog':'cart'));if(n)n.classList.add('active');if(section==='catalog')renderProducts();if(section==='cart')renderCart();if(section==='checkout')renderCheckout();window.scrollTo(0,0)}
-
-function renderProducts() {
-  const categories = [
-    'Todos', 'Cotillón', 'Repostería',
-'Juguetería', 'Navidad', 'Descartables',
-'Ofertas'
-  ];
-
-  document.getElementById('chips').innerHTML =
-    categories.map(c =>
-      `<button class="chip ${filter === c ? 'selected' : ''}"
-        onclick="chooseCategory('${c}')">${c}</button>`
-    ).join('');
-
-  const q = document.getElementById('search')
-    .value.trim().toLowerCase();
-
-  const list = demo.filter(p =>
-    (filter === 'Todos' || p.category === filter) &&
-    p.name.toLowerCase().includes(q)
-  );
-
-  document.getElementById('products').innerHTML =
-    list.length
-      ? list.map(p => `
-        <article class="product">
-        <div class="photo">
-  ${p.foto_path
-    ? `<img src="${STOCK_URL}/storage/v1/object/public/productos-fotos./${p.foto_path}"
-        onclick="abrirFoto(this.src)" alt="Foto del producto"
-        style="width:100%;height:100%;object-fit:cover;border-radius:13px"
-        onerror="this.style.display='none'">`
-    : (p.icon || '🛍️')}
-</div>
-          <div class="details">
-            <strong>${p.name}</strong>
-           ${p.en_promocion && p.precio_promocion > 0 && p.precio_promocion < p.precio_original
-  ? `<div style="color:#aaa;text-decoration:line-through;font-size:14px">${money(p.precio_original)}</div>
-     <div class="price" style="color:#ff4545">${money(p.price)}</div>
-     <span style="background:#dc2626;color:white;padding:4px 9px;border-radius:6px;font-size:12px;font-weight:bold">🔥 OFERTA</span>`
-  : `<div class="price">${money(p.price)}</div>`
-} 
-            <div class="hint">Disponible</div>
-          </div>
-          <button class="plus"
-            aria-label="Agregar producto"
-            onclick="add('${p.id}')">Agregar</button>
-        </article>
-      `).join('')
-      : '<p class="empty">No hay productos disponibles.</p>';
-}
-
- function chooseCategory(c){filter=c;renderProducts()}function add(id){cart[id]=(cart[id]||0)+1;save();const b=document.getElementById('count');b.animate([{transform:'scale(1.6)'},{transform:'scale(1)'}],{duration:240})}function change(id,delta){cart[id]=Math.max(0,(cart[id]||0)+delta);if(!cart[id])delete cart[id];save();renderCart()}function removeItem(id){delete cart[id];save();renderCart()}
-function renderCart(){const items=demo.filter(p=>cart[p.id]);document.getElementById('cartitems').innerHTML=items.length?items.map(p=>`<div class="cartrow"><div class="photo">${p.icon}</div><div class="details"><strong>${p.name}</strong><div class="price">${money(p.price*cart[p.id])}</div></div><div class="qty"><button aria-label="Restar" onclick="change('${p.id}',-1)">−</button>${cart[p.id]}<button aria-label="Sumar" onclick="change('${p.id}',1)">+</button></div><button class="remove" aria-label="Quitar" onclick="removeItem('${p.id}')">♜</button></div>`).join(''):'<p class="empty">Tu carrito está vacío. ¡Elegí algunos productos!</p>';document.getElementById('carttotal').innerHTML=items.length?`<div class="summary"><strong>${count()} unidades</strong><span>Total: <span class="total">${money(total())}</span></span></div>`:'';document.getElementById('checkoutbtn').hidden=!items.length}
-function renderCheckout(){if(!count()){show('cart');return}document.getElementById('checktotal').innerHTML=`<strong>Subtotal de productos</strong><span class="total">${money(total())}</span>`;deliveryChange()}
-function deliveryChange(){let val=document.querySelector('input[name="delivery"]:checked').value;let delivery=val!=='Retiro en el local';document.getElementById('addresswrap').hidden=!delivery;['street','number','city'].forEach(id=>document.getElementById(id).required=delivery);if(val==='Envío en San Javier'&& !document.getElementById('city').value.trim())document.getElementById('city').value='San Javier';document.getElementById('deliverynotice').textContent=delivery?'El costo del envío se confirmará antes de cobrar. Esta versión no realiza pedidos ni pagos reales.':'Retiro en el local sin costo de envío. Esta versión no realiza pedidos ni pagos reales.'}
-function simulateOrder(event){event.preventDefault();if(!count())return;show('success')}
-let installEvent=null;
-window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installEvent=event;document.getElementById('installhelp').textContent='Instalá La Barraca para abrirla desde tu pantalla de inicio.'});
-window.addEventListener('appinstalled',()=>{installEvent=null;document.getElementById('installhelp').textContent='¡La Barraca se instaló correctamente!'});
-async function installShop(){
- if(installEvent){const prompt=installEvent;installEvent=null;await prompt.prompt();return;}
- const ios=/iPad|iPhone|iPod/.test(navigator.userAgent);
- document.getElementById('installhelp').textContent=ios?'En Safari, tocá Compartir y elegí «Agregar a pantalla de inicio».':'En Chrome, abrí el menú ⋮ y elegí «Instalar aplicación» o «Agregar a pantalla principal». Si no aparece, esperá un momento y recargá.';
-}
-if('serviceWorker' in navigator && location.protocol==='https:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-
-save();
-show('home');
-
-
-async function iniciarCatalogoReal() {
-  await cargarProductosShop();
-
-  if (!Array.isArray(productosShop)) {
-    console.error("No se pudo cargar el catálogo");
-    return;
-  }
-
-  convertirProductosShop();
-  save();
-  renderProducts();
-}
-
-
-iniciarCatalogoReal();
-function abrirFoto(src) {
-  document.getElementById('imagenGrande').src = src;
-  document.getElementById('visorFoto').hidden = false;
-}
-
-function cerrarFoto() {
-  document.getElementById('visorFoto').hidden = true;
-  document.getElementById('imagenGrande').removeAttribute('src');
-}
+const STOCK_URL="https://iyrqarpotyckzozhnswx.supabase.co";
+const STOCK_KEY="sb_publishable_HGEpi6b5IGWMo9zsNkBXLA_zn6HtSN3";
+const WHATSAPP_PEDIDOS="5493405480827";
+const FOTO_BASE=STOCK_URL+"/storage/v1/object/public/productos-fotos./";
+let productosShop=null, demo=[], cart={}, filter='Todos', catalogoCargado=false;
+try{cart=JSON.parse(localStorage.getItem('barraca_shop_demo_cart')||'{}')||{};}catch(e){cart={};}
+const money=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(n);
+const count=()=>Object.values(cart).reduce((a,b)=>a+Number(b||0),0);
+const total=()=>demo.reduce((sum,p)=>sum+(cart[p.id]||0)*p.price,0);
+const byId=id=>document.getElementById(id);
+function save(){localStorage.setItem('barraca_shop_demo_cart',JSON.stringify(cart));byId('count').textContent=count();}
+function show(section,cat){if(cat)filter=cat;['home','catalog','cart','checkout','success'].forEach(x=>byId(x).hidden=x!==section);document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));let n=byId('nav'+(section==='home'?'home':section==='catalog'?'catalog':'cart'));if(n)n.classList.add('active');if(section==='catalog')renderProducts();if(section==='cart')renderCart();if(section==='checkout')renderCheckout();window.scrollTo(0,0);}
+function precioEfectivo(p){return p.en_promocion===true&&p.precio_promocion!=null&&Number(p.precio_promocion)>0&&Number(p.precio_promocion)<Number(p.precio_venta)?Number(p.precio_promocion):Number(p.precio_venta);}
+async function cargarProductosShop(){try{const respuesta=await fetch(STOCK_URL+'/rest/v1/productos?select=id,codigo_barras,nombre,precio_venta,stock,foto_path,categoria,publicar_shop,en_promocion,precio_promocion&publicar_shop=eq.true&stock=gt.0',{headers:{apikey:STOCK_KEY,Authorization:'Bearer '+STOCK_KEY},cache:'no-store'});if(!respuesta.ok)throw new Error('Supabase '+respuesta.status+': '+await respuesta.text());productosShop=await respuesta.json();catalogoCargado=true;}catch(error){console.error('Error de conexión:',error);catalogoCargado=false;}}
+function convertirProductosShop(){demo=productosShop.map(p=>({id:String(p.id),codigo:String(p.codigo_barras||''),name:String(p.nombre||''),price:precioEfectivo(p),precio_original:Number(p.precio_venta),en_promocion:p.en_promocion===true,precio_promocion:p.precio_promocion==null?null:Number(p.precio_promocion),icon:'🛍️',category:p.categoria||'Todos',stock:Number(p.stock),foto_path:p.foto_path}));for(const id of Object.keys(cart)){const p=demo.find(x=>x.id===id);if(!p||!Number.isSafeInteger(cart[id])||cart[id]<=0)delete cart[id];else cart[id]=Math.min(cart[id],p.stock);}save();}
+function escapar(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function fotoProducto(p){return p.foto_path?FOTO_BASE+p.foto_path.split('/').map(encodeURIComponent).join('/'):'';}
+function renderProducts(){const categories=['Todos','Cotillón','Repostería','Juguetería','Navidad','Descartables','Ofertas'];byId('chips').innerHTML=categories.map(c=>`<button class="chip ${filter===c?'selected':''}" onclick="chooseCategory('${c}')">${c}</button>`).join('');const q=byId('search').value.trim().toLowerCase();const list=demo.filter(p=>(filter==='Todos'||(filter==='Ofertas'?p.en_promocion&&p.price<p.precio_original:p.category===filter))&&(p.name.toLowerCase().includes(q)||p.codigo.toLowerCase().includes(q)));byId('products').innerHTML=!catalogoCargado?'<p class="empty">No se pudo cargar el catálogo. Revisá tu conexión y actualizá la página.</p>':list.length?list.map(p=>`<article class="product"><div class="photo">${p.foto_path?`<img loading="lazy" src="${escapar(fotoProducto(p))}" onclick="abrirFoto(this.src)" alt="Foto de ${escapar(p.name)}" onerror="this.style.display='none'">`:p.icon}</div><div class="details"><strong>${escapar(p.name)}</strong>${p.en_promocion&&p.price<p.precio_original?`<div style="color:#aaa;text-decoration:line-through;font-size:14px">${money(p.precio_original)}</div><div class="price" style="color:#ff4545">${money(p.price)}</div><span style="background:#dc2626;color:white;padding:4px 9px;border-radius:6px;font-size:12px;font-weight:bold">🔥 OFERTA</span>`:`<div class="price">${money(p.price)}</div>`}<div class="hint">Disponible</div></div><button class="plus" onclick="add('${p.id}')" ${Number(cart[p.id]||0)>=p.stock?'disabled':''}>${Number(cart[p.id]||0)>=p.stock?'Máximo disponible':'Agregar'}</button></article>`).join(''):'<p class="empty">No hay productos disponibles.</p>';}
+function chooseCategory(c){filter=c;renderProducts();}
+function add(id){const p=demo.find(x=>x.id===id);if(!p)return;if((cart[id]||0)>=p.stock){alert('No hay más unidades disponibles de este producto.');return;}cart[id]=(cart[id]||0)+1;save();renderProducts();}
+function change(id,delta){const p=demo.find(x=>x.id===id);if(!p)return;cart[id]=Math.max(0,Math.min(p.stock,(cart[id]||0)+delta));if(!cart[id])delete cart[id];save();renderCart();}
+function removeItem(id){delete cart[id];save();renderCart();}
+function renderCart(){const items=demo.filter(p=>cart[p.id]);byId('cartitems').innerHTML=items.length?items.map(p=>`<div class="cartrow"><div class="photo">${p.foto_path?`<img loading="lazy" src="${escapar(fotoProducto(p))}" alt="">`:p.icon}</div><div class="details"><strong>${escapar(p.name)}</strong><div class="price">${money(p.price*cart[p.id])}</div></div><div class="qty"><button aria-label="Restar" onclick="change('${p.id}',-1)">−</button>${cart[p.id]}<button aria-label="Sumar" onclick="change('${p.id}',1)" ${cart[p.id]>=p.stock?'disabled':''}>+</button></div><button class="remove" aria-label="Quitar" onclick="removeItem('${p.id}')">×</button></div>`).join(''):'<p class="empty">Tu carrito está vacío. ¡Elegí algunos productos!</p>';byId('carttotal').innerHTML=items.length?`<div class="summary"><strong>${count()} unidades</strong><span>Total: <span class="total">${money(total())}</span></span></div>`:'';byId('checkoutbtn').hidden=!items.length;}
+function renderCheckout(){if(!count()){show('cart');return;}byId('checktotal').innerHTML=`<strong>Subtotal de productos</strong><span class="total">${money(total())}</span>`;deliveryChange();}
+function deliveryChange(){const val=document.querySelector('input[name="delivery"]:checked').value;const envio=val!=='Retiro en el local';byId('addresswrap').hidden=!envio;['street','number','city'].forEach(id=>byId(id).required=envio);if(val==='Envío en San Javier')byId('city').value='San Javier';byId('deliverynotice').textContent=envio?'El costo del envío y la disponibilidad se confirmarán por WhatsApp antes de cobrar.':'El horario de retiro y la disponibilidad se coordinarán por WhatsApp.';}
+function campo(id){return byId(id).value.trim();}
+async function prepararPedidoWhatsApp(event){event.preventDefault();if(!count()){show('cart');return;}const btn=byId('orderform').querySelector('button[type="submit"]');if(btn.disabled)return;btn.disabled=true;try{
+// Revalidar cantidades y precios con Supabase antes de preparar el mensaje.
+await cargarProductosShop();if(!catalogoCargado)throw new Error('No pudimos verificar los productos. Revisá tu conexión.');convertirProductosShop();const items=demo.filter(p=>cart[p.id]);if(!items.length)throw new Error('Los productos del carrito ya no están disponibles. Revisá el carrito.');
+const entrega=document.querySelector('input[name="delivery"]:checked').value;const pago=document.querySelector('input[name="payment"]:checked').value;
+const lineas=['🛒 *NUEVO PEDIDO - LA BARRACA SHOP*','',`*Cliente:* ${campo('fullname')}`,`*WhatsApp:* ${campo('phone')}`,'', '*PRODUCTOS:*',...items.map(p=>`• ${cart[p.id]} x ${p.name} — ${money(p.price)} c/u = ${money(cart[p.id]*p.price)}`),'',`*TOTAL PRODUCTOS:* ${money(total())}`,'',`*Entrega:* ${entrega}`];
+if(entrega!=='Retiro en el local'){lineas.push(`*Localidad:* ${campo('city')}`,`*Dirección:* ${campo('street')} ${campo('number')}`);if(campo('neighborhood'))lineas.push(`*Barrio:* ${campo('neighborhood')}`);if(campo('references'))lineas.push(`*Referencias:* ${campo('references')}`);}
+lineas.push(`*Forma de pago:* ${pago}`);if(campo('observations'))lineas.push(`*Observaciones:* ${campo('observations')}`);lineas.push('','Pedido sujeto a confirmación de disponibilidad, entrega y costo de envío.','Gracias por comprar en La Barraca.');
+const url='https://wa.me/'+WHATSAPP_PEDIDOS+'?text='+encodeURIComponent(lineas.join('\n'));
+// La apertura se realiza en la pestaña actual para evitar bloqueos de ventanas emergentes.
+window.location.href=url;
+}catch(error){alert(error.message||'No se pudo preparar el pedido.');renderCart();}finally{btn.disabled=false;}}
+let installEvent=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installEvent=event;byId('installhelp').textContent='Instalá La Barraca para abrirla desde tu pantalla de inicio.';});window.addEventListener('appinstalled',()=>{installEvent=null;byId('installhelp').textContent='¡La Barraca se instaló correctamente!';});async function installShop(){if(installEvent){const prompt=installEvent;installEvent=null;await prompt.prompt();return;}const ios=/iPad|iPhone|iPod/.test(navigator.userAgent);byId('installhelp').textContent=ios?'En Safari, tocá Compartir y elegí «Agregar a pantalla de inicio».':'En Chrome, abrí el menú ⋮ y elegí «Instalar aplicación» o «Agregar a pantalla principal». Si no aparece, esperá un momento y recargá.';}
+if('serviceWorker' in navigator&&location.protocol==='https:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+async function iniciarCatalogoReal(){await cargarProductosShop();if(!Array.isArray(productosShop)){renderProducts();return;}convertirProductosShop();renderProducts();}
+function abrirFoto(src){byId('imagenGrande').src=src;byId('visorFoto').hidden=false;}function cerrarFoto(){byId('visorFoto').hidden=true;byId('imagenGrande').removeAttribute('src');}
+save();show('home');iniciarCatalogoReal();
 </script></body></html>
